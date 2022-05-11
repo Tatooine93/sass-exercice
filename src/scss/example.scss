@@ -1,0 +1,122 @@
+
+@import "./variables";
+@import "./mixin";
+
+body {
+    font: 100% "Space Mono", monospace;
+    color: $primary-color;
+    margin: 0;
+    padding: $padding;
+    background-color: $background-white;
+    overflow-x: hidden;
+
+    main {
+    padding: 0 $padding;
+
+    article {
+        display: flex;
+        flex-wrap: wrap;
+
+        section {
+            flex-grow: 1;
+            flex-basis: 45%;
+            border: 1px $border-color solid;
+            @include box-shadow($primary-color);
+            padding: $padding;
+            margin: 16px;
+            clear: both;
+            overflow: auto;
+            box-sizing: border-box;
+        }
+        
+        section#selling-points {
+            flex-grow: 2;
+            flex-basis: 100%;
+
+            @for $i from 1 through 6 {
+                ul :nth-child(#{$i}) {
+                    background-color: rgba(0, 255, 255, $i * 0.1)
+                }
+              }
+        }
+
+        code {
+            background: $background-black;
+            border: 1px solid $primary-color;
+            color: $border-color;
+            page-break-inside: avoid;
+            font-family: monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: $padding;
+            display: block;
+            word-wrap: break-word;
+
+            .before {
+                float: left;
+                width: 40%;
+            }
+
+            .after {
+                float: right;
+                width: 40%;
+            }
+        }
+
+    }
+    
+    h1,
+    h2,
+    h3 {
+        color: $h3-color;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    h3 {
+        text-align: center;
+        font-size: 1.5em;
+        padding: $padding * 4;
+        margin-bottom: 0px;
+    }
+    
+    .messages {
+        padding: $padding;
+
+        /*.success,
+        .error,
+        .warning*/
+        %message-shared {
+            border: 1px solid $border-color;
+            padding: $padding;
+            color: $message-color;
+        }
+
+        .success {
+            @extend %message-shared;
+            background-color: $success-color;
+        }
+        
+        .error {
+            @extend %message-shared;
+            background-color: $error-color;
+
+            &:hover {
+                background-color: green;
+            }
+
+        }
+        
+        .warning {
+            @extend %message-shared;
+            background-color: $warning-color;
+        }
+    }
+    
+}
+}
